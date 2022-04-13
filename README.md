@@ -29,32 +29,55 @@ Things you may want to cover:
 | nickname               | string | null: false |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false |
-| profile            | text   | null: false |
-|last_name          | text   | null: false |
-| first_name           | text   | null: false |
+| last_name          | string   | null: false |
+| first_name           | string   | null: false |
+| last_name_kana           | string   | null: false |
+| first_name_kana           | string   | null: false |
 | birth_day           | date   | null: false |
-| item_id           | reference   |          |
+
+has_many :items
+has_one :purchases
 
 ## items テーブル
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| product_name       | text   | null: false |
-| price          | integer | null: false |
+| product_name       | string   | null: false |
+| introduction       | text   | null: false |
+| price              | integer | null: false |
 | condition          | integer | null: false, foreign_key: true |
-| user_id               | references | null: false, foreign_key: true |
-| brand_id              | references | null: false, foreign_key: true |
-| category_id           | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
+| brand_id           | integer | null: false, foreign_key: true |
+| category_id        | integer | null: false, foreign_key: true |
+| shipping_id        | integer | null: false, foreign_key: true |
+
+belongs_to :user
+has_one :purchases
 
 
+
+## purchases テーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user_id   | integer      | null: false, foreign_key: true |
+| item_id | integer  | null: false,foreign_key: true |
+
+belongs_to :user
+belongs_to :item
+has_one :address
 
 ## address テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
 | address   | text      | null: false |
+| building  | text      | null: false |
 | post_code | integer  | null: false |
 | city      | text      | null: false |
 | prefectures | referense  | null: false,foreign_key: true |
-| user_id | referense  | null: false,foreign_key: true |
+| purchase_id | integer  | null: false,foreign_key: true |
+
+ belongs_to :purchases
+
 
