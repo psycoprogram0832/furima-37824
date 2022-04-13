@@ -46,10 +46,11 @@ has_one :purchases
 | introduction       | text   | null: false |
 | price              | integer | null: false |
 | condition          | integer | null: false, foreign_key: true |
-| user               | references | null: false, foreign_key: true |
+| user_id               | integer | null: false, foreign_key: true |
 | brand_id           | integer | null: false, foreign_key: true |
 | category_id        | integer | null: false, foreign_key: true |
-| shipping_id        | integer | null: false, foreign_key: true |
+| prefecture_id        | integer | null: false, foreign_key: true |
+| delivery_charge_id        | integer | null: false, foreign_key: true |
 
 belongs_to :user
 has_one :purchases
@@ -78,6 +79,6 @@ has_one :address
 | prefectures | referense  | null: false,foreign_key: true |
 | purchase_id | integer  | null: false,foreign_key: true |
 
- belongs_to :purchases
+ belongs_to :purchase
 
 
