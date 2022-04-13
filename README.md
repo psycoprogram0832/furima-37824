@@ -36,7 +36,7 @@ Things you may want to cover:
 | birth_day           | date   | null: false |
 
 has_many :items
-has_one :purchases
+has_many :purchases
 
 ## items テーブル
 
@@ -45,15 +45,15 @@ has_one :purchases
 | product_name       | string   | null: false |
 | introduction       | text   | null: false |
 | price              | integer | null: false |
-| condition_id          | integer | null: false, foreign_key: true |
-| user               | reference | null: false, foreign_key: true |
-| brand_id           | integer | null: false, foreign_key: true |
-| category_id        | integer | null: false, foreign_key: true |
-| prefecture_id        | integer | null: false, foreign_key: true |
-| delivery_charge_id        | integer | null: false, foreign_key: true |
+| condition_id          | integer | null: false, |
+| user               | references | null: false, foreign_key: true |
+| brand_id           | integer | null: false|
+| category_id        | integer | null: false|
+| prefecture_id        | integer | null: false|
+| delivery_charge_id        | integer | null: false|
 
 belongs_to :user
-has_one :purchases
+has_one :purchase
 
 
 
@@ -61,8 +61,8 @@ has_one :purchases
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| user   | reference      | null: false, foreign_key: true |
-| item | reference  | null: false,foreign_key: true |
+| user   | references  | null: false, foreign_key: true |
+| item | references  | null: false,foreign_key: true |
 
 belongs_to :user
 belongs_to :item
@@ -77,8 +77,8 @@ has_one :address
 | post_code | string  | null: false |
 | city      | string      | null: false |
 | phone_number      | string      | null: false |
-| prefecture_id | integer  | null: false,foreign_key: true |
-| purchase_id | integer  | null: false,foreign_key: true |
+| prefecture_id | integer  | null: false, |
+| purchase | references  | null: false,foreign_key: true |
 
  belongs_to :purchase
 
