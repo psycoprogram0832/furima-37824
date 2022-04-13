@@ -45,8 +45,8 @@ has_one :purchases
 | product_name       | string   | null: false |
 | introduction       | text   | null: false |
 | price              | integer | null: false |
-| condition          | integer | null: false, foreign_key: true |
-| user_id               | integer | null: false, foreign_key: true |
+| condition_id          | integer | null: false, foreign_key: true |
+| user               | reference | null: false, foreign_key: true |
 | brand_id           | integer | null: false, foreign_key: true |
 | category_id        | integer | null: false, foreign_key: true |
 | prefecture_id        | integer | null: false, foreign_key: true |
@@ -61,8 +61,8 @@ has_one :purchases
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| user_id   | integer      | null: false, foreign_key: true |
-| item_id | integer  | null: false,foreign_key: true |
+| user   | reference      | null: false, foreign_key: true |
+| item | reference  | null: false,foreign_key: true |
 
 belongs_to :user
 belongs_to :item
@@ -72,11 +72,12 @@ has_one :address
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| address   | text      | null: false |
-| building  | text      | null: false |
-| post_code | integer  | null: false |
-| city      | text      | null: false |
-| prefectures | referense  | null: false,foreign_key: true |
+| address   | string      | null: false |
+| building  | string      | null: false |
+| post_code | string  | null: false |
+| city      | string      | null: false |
+| phone_number      | string      | null: false |
+| prefecture_id | integer  | null: false,foreign_key: true |
 | purchase_id | integer  | null: false,foreign_key: true |
 
  belongs_to :purchase
