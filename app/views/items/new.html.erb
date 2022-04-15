@@ -5,13 +5,8 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
-
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-
-    <%# 商品画像 %>
+    <%= form_with model: @item, local: true do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
     <div class="img-upload">
       <div class="weight-bold-text">
         商品画像
@@ -21,7 +16,7 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :images, id:"item-image" %>
+        <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
     <%# /商品画像 %>
@@ -81,7 +76,7 @@
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shopment_id, Shipment.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:shipment_id, Shipment.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
     <%# /配送について %>

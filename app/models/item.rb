@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :shipment
   belongs_to :delivery_charge
-  has_many_attached :images
+  has_one_attached :image
 
 
   validates :product_name, presence: true
