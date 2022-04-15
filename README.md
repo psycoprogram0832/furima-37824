@@ -47,7 +47,7 @@ has_many :purchases
 | price              | integer | null: false |
 | condition_id          | integer | null: false, |
 | user               | references | null: false, foreign_key: true |
-| brand_id           | integer | null: false|
+| shipment_id           | integer | null: false|
 | category_id        | integer | null: false|
 | prefecture_id        | integer | null: false|
 | delivery_charge_id        | integer | null: false|
