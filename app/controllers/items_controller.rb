@@ -19,10 +19,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def delivery
-    @item = Item.find_by(delivery_charge_id: params[:id])
-  end
-
   private
 
   def item_params
