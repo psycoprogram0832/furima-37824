@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
 
   def move_to_sold
   @item = Item.find(params[:item_id])
-    if @item.order.present?
+    if @item.user_id == current_user.id || @item.order.present?
       redirect_to root_path
     end
   end
