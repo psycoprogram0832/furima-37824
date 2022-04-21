@@ -1,10 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :move_to_signed_in
+  before_action :move_to_sold
+
   def index
     @item = Item.find(params[:item_id])
     @order = OrderAddress.new
-  end
-
-  def new
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def create
@@ -34,4 +37,15 @@ class OrdersController < ApplicationController
     )
   end
 
+  def move_to_signed_in
+    unless user_signed_in?
+      redirect_to '/users/sign_in'
+    end
+  end
+
+  def move_to_sold
+    if @item.order.present?
+    redirect_to root_path
+    end
+  end
 end
