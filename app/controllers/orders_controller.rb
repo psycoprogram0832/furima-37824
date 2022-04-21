@@ -15,9 +15,6 @@ class OrdersController < ApplicationController
     else
       render :index
     end
-    if @item.order.present?
-      redirect_to root_path
-    end
   end
 
   private

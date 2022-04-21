@@ -7,6 +7,5 @@ FactoryBot.define do
     address {"青山1-1-1"}
     building {"光寫眞館"}
     token {"tok_abcdefghijk00000000000000000"}
-    association :user, :item
   end
 end

@@ -54,5 +54,35 @@ require 'rails_helper'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid")
       end
+      it "電話番号が9桁以下では購入できない" do
+        @order_address.phone_number = '090111111'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+      end
+      it "電話番号が12桁以上では購入できない" do
+        @order_address.phone_number = '090123412341'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+      end
+      it "電話番号に半角数字以外が含まれている場合は購入できない" do
+        @order_address.phone_number = '0905555Y555'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+      end
+      it "tokenが空では購入できない" do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it "userが紐付いていなければ購入できない" do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      it "itemが紐付いていなければ購入できない" do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
