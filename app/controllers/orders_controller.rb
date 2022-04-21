@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :move_to_signed_in
-  before_action :move_to_sold
 
   def index
     @item = Item.find(params[:item_id])
@@ -19,6 +18,10 @@ class OrdersController < ApplicationController
       redirect_to root_path
     else
       render :index
+    end
+    
+    if @item.order.present?
+      redirect_to root_path
     end
   end
 
@@ -40,12 +43,6 @@ class OrdersController < ApplicationController
   def move_to_signed_in
     unless user_signed_in?
       redirect_to '/users/sign_in'
-    end
-  end
-
-  def move_to_sold
-    if @item.order.present?
-    redirect_to root_path
     end
   end
 end
